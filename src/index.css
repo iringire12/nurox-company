@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    /* Richer, true dark blue background representing Nurox */
+    @apply bg-[#030816];
+    /* Nurox-style large vertical grid lines */
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20vw 100vh;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 shadow-[0_0_20px_rgba(147,51,234,0.3)];
+  }
+  
+  .btn-secondary {
+    @apply bg-[#0A0A0A] text-purple-400 border border-purple-500/50 px-6 py-3 rounded-lg font-medium hover:bg-purple-600/10 hover:border-purple-400 transition-all duration-200 shadow-xl;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transform hover:-translate-y-2 transition-all duration-300;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Clear Dropzone for Images */
+  .image-placeholder {
+    @apply flex items-center justify-center bg-[#0d0d12] border border-dashed border-purple-500/30 rounded-xl w-full h-full text-purple-400 overflow-hidden relative;
+  }
+  
+  .image-placeholder::before {
+    content: "Upload Image Here";
+    @apply absolute inset-0 flex items-center justify-center text-sm tracking-wide opacity-50 transition-opacity group-hover:opacity-100 z-10;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
