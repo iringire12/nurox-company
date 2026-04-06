@@ -15,10 +15,12 @@ import TestimonialsPage from './pages/TestimonialsPage';
 import FAQPage from './pages/FAQPage';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
+import AuthPage from './pages/AuthPage';
+import { AuthProvider } from './context/AuthContext';
 
 function AppLayout() {
   const location = useLocation();
-  const hideFooter = location.pathname === '/coming-soon';
+  const hideFooter = ['/coming-soon', '/login', '/register'].includes(location.pathname);
 
   return (
     <div className="min-h-screen flex flex-col text-white font-sans selection:bg-purple-500 selection:text-white">
@@ -38,6 +40,8 @@ function AppLayout() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog-detail" element={<BlogDetail />} />
+          <Route path="/login" element={<AuthPage mode="login" />} />
+          <Route path="/register" element={<AuthPage mode="register" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
@@ -49,7 +53,9 @@ function AppLayout() {
 function App() {
   return (
     <BrowserRouter>
-      <AppLayout />
+      <AuthProvider>
+        <AppLayout />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

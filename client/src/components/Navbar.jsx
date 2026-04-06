@@ -2,8 +2,11 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Hexagon, ChevronDown } from 'lucide-react';
 
+import { useAuth } from '../context/AuthContext';
+
 const Navbar = () => {
   const location = useLocation();
+  const { user, isAuthenticated, logout } = useAuth();
   const isActive = (path) => location.pathname === path;
   const isServicesActive =
     location.pathname === '/services' || location.pathname === '/services-detail';
@@ -91,10 +94,38 @@ const Navbar = () => {
         </div>
 
         {/* Action - Pushed Right */}
-        <div className="hidden lg:flex justify-end w-1/4">
-          <Link to="/contact" className="bg-[#051125] text-white px-6 py-2.5 rounded-md border border-blue-600/50 text-sm font-semibold hover:bg-blue-600 transition-colors shadow-[0_0_15px_rgba(37,99,235,0.15)]">
-            Start Free Trial
-          </Link>
+        <div className="hidden lg:flex justify-end items-center gap-3 w-1/4">
+          {isAuthenticated ? (
+            <>
+              <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur-sm">
+                {user?.name}
+              </div>
+              <button
+                type="button"
+                onClick={logout}
+                className="rounded-md border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className={`text-sm font-semibold transition-colors ${
+                  isActive('/login') ? 'text-white' : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="bg-[#051125] text-white px-6 py-2.5 rounded-md border border-blue-600/50 text-sm font-semibold hover:bg-blue-600 transition-colors shadow-[0_0_15px_rgba(37,99,235,0.15)]"
+              >
+                Start Free Trial
+              </Link>
+            </>
+          )}
         </div>
 
       </div>
