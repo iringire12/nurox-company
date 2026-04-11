@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 const connectDatabase = require('./src/config/db');
 const authRoutes = require('./src/routes/authRoutes');
+const serviceRoutes = require('./src/routes/serviceRoutes');
 const { notFound, errorHandler } = require('./src/middleware/errorMiddleware');
 
 dotenv.config();
@@ -24,6 +25,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/services', serviceRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

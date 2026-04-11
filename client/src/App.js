@@ -16,6 +16,7 @@ import FAQPage from './pages/FAQPage';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import AuthPage from './pages/AuthPage';
+import AddServicePage from './pages/AddServicePage';
 import { AuthProvider } from './context/AuthContext';
 
 function AppLayout() {
@@ -42,6 +43,7 @@ function AppLayout() {
           <Route path="/blog-detail" element={<BlogDetail />} />
           <Route path="/login" element={<AuthPage mode="login" />} />
           <Route path="/register" element={<AuthPage mode="register" />} />
+          <Route path="/add-service" element={<AddServicePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

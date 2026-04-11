@@ -1,6 +1,7 @@
-import React from 'react';
+ import React from 'react';
 import { motion } from 'framer-motion';
 import ServicesShowcase from '../components/ServicesShowcase';
+import CreatedServicesSection from '../components/CreatedServicesSection';
 import Features from '../components/Features';
 import Pricing from '../components/Pricing';
 import Testimonials from '../components/Testimonials';
@@ -49,6 +50,9 @@ const Services = () => {
 
       {/* Services Showcase Section */}
       <ServicesShowcase />
+
+      {/* Saved Services Section */}
+      <CreatedServicesSection />
 
       {/* Features Section */}
       <Features />

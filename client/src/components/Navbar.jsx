@@ -97,6 +97,12 @@ const Navbar = () => {
         <div className="hidden lg:flex justify-end items-center gap-3 w-1/4">
           {isAuthenticated ? (
             <>
+              <Link
+                to="/add-service"
+                className="rounded-md border border-blue-500/40 bg-blue-500/10 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-600"
+              >
+                Add Service
+              </Link>
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur-sm">
                 {user?.name}
               </div>
